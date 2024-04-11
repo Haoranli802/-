@@ -35,3 +35,28 @@ class Solution {
     }
 }
 ```
+
+***
+
+LC153寻找旋转排序数组中的最小值
+
+```
+class Solution {
+    public int findMin(int[] nums) {
+        int left = 0;
+        int right = nums.length - 1;
+        while(left < right){
+            int mid = left + (right - left) / 2;
+            //如果mid大于右边界，那么mid一定不可能是最小值，但是如果mid小于等于右边界
+            //那么mid就有可能是最小值。所以缩短边界的时候right = mid而left = mid + 1
+            if(nums[mid] <= nums[right]){
+                right = mid;
+            }
+            else{
+                left = mid + 1;
+            }
+        }
+        return nums[left];
+    }
+}
+```
